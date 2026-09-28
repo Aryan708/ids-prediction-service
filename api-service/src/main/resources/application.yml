@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ids-api
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/ids}
+    username: ${DB_USERNAME:ids}
+    password: ${DB_PASSWORD:ids}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none   # Flyway owns the schema
+  flyway:
+    enabled: true
+  cache:
+    type: redis
+  data:
+    redis:
+      repositories:
+        enabled: false
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 1s
+
+ml-service:
+  base-url: ${ML_SERVICE_URL:http://localhost:8000}
+  connect-timeout: 2s
+  read-timeout: 10s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

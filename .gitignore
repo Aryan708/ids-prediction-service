@@ -1,0 +1,11 @@
+# Java
+api-service/target/
+*.iml
+.idea/
+# Python
+__pycache__/
+.pytest_cache/
+.venv/
+ml-service/tests/demo_model.joblib
+# Trained models are large; keep them out of git
+ml-service/models/*.joblib
